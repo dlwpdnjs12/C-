@@ -1,0 +1,44 @@
+// ConsoleApplication2.cpp: 콘솔 응용 프로그램의 진입점을 정의합니다.
+//
+
+#include "stdafx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define SIZE 1024
+
+char * strcat(char *str1, char *str2);
+int main()
+{
+	char *input1 = (char *)malloc(sizeof(char)*SIZE);
+	char *input2 = (char *)malloc(sizeof(char)*SIZE);
+	char *result;
+	scanf_s("%s %s",input1, input2);
+	result = strcat(input1, input2);
+	free(input1);
+	free(input2);
+	free(result);
+	system("pause");
+
+    return 0;
+}
+char * strcat(char *str1, char *str2)
+{
+	char *result;
+	int size1, size2,i;
+	//str1의 사이즈 구하기
+	size1=strlen(str1);
+	//str2의 사이즈 구하기
+	size2=strlen(str2);
+	//result 만들기
+	result= (char *)malloc(sizeof(char)*(size1 + size2)+1);
+	//str1붙이기
+	for (i = 0;str1[i] != '\n';i++)
+		result[i] = str1[i];
+	//str2붙이기
+	for (i = 0;str2[i] != '\n';i++)
+		result[i + size1] = str2[i];
+	result[i + size1] = '\0';
+	return result;
+
+}
